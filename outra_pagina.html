@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Concluído</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cadastro Concluído!</h1>
+
+    <div>
+        <p>O seu cadastro foi realizado com sucesso, <span id="userName"></span>!</p>
+        <p>Aguarde enquanto você é redirecionado...</p>
+    </div>
+
+    <script>
+        // Simulação de recuperação do nome de usuário da localStorage
+        var userName = localStorage.getItem('lastUserName');
+        document.getElementById('userName').textContent = userName;
+
+        // Redirecionamento após 3 segundos para o site desejado (altere o URL conforme necessário)
+        setTimeout(function() {
+            window.location.href = 'onde_pagina.html';
+        }, 3000);
+    </script>
+
+</body>
+</html>

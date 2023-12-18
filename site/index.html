@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário com Banco de Dados Simulado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4caf50;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <h1>Cadastro de Usuário</h1>
+
+    <form id="userForm">
+        <label for="username">Nome de Usuário:</label>
+        <input type="text" id="username" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" required>
+
+        <label for="dob">Data de Nascimento:</label>
+        <input type="date" id="dob" required>
+
+        <label for="gender">Sexo:</label>
+        <select id="gender" required>
+            <option value="male">Masculino</option>
+            <option value="female">Feminino</option>
+            <option value="other">Outro</option>
+        </select>
+
+        <label for="city">Cidade:</label>
+        <input type="text" id="city" required>
+
+        <label for="phone">Número de Telefone:</label>
+        <input type="tel" id="phone" required>
+
+        <label for="grade">Série:</label>
+        <select id="grade" required>
+            <option value="5">5º ano</option>
+            <option value="6">6º ano</option>
+            <option value="7">7º ano</option>
+            <option value="8">8º ano</option>
+            <option value="9">9º ano</option>
+            <option value="10">1º ano do Ensino Médio</option>
+            <option value="11">2º ano do Ensino Médio</option>
+            <option value="12">3º ano do Ensino Médio</option>
+            <option value="13">Não estou matriculado</option>
+        </select>
+
+        <label for="agree">Concordo com os termos do site:</label>
+        <input type="checkbox" id="agree" required>
+
+        <button type="button" onclick="salvarUsuario()">Salvar</button>
+    </form>
+
+    <script>
+        function salvarUsuario() {
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var dob = document.getElementById('dob').value;
+            var gender = document.getElementById('gender').value;
+            var city = document.getElementById('city').value;
+            var phone = document.getElementById('phone').value;
+            var grade = document.getElementById('grade').value;
+            var agree = document.getElementById('agree').checked;
+
+            if (username && email && dob && gender && city && phone && grade && agree) {
+                var user = {
+                    username: username,
+                    email: email,
+                    dob: dob,
+                    gender: gender,
+                    city: city,
+                    phone: phone,
+                    grade: grade
+                };
+
+                var userList = JSON.parse(localStorage.getItem('users')) || [];
+                userList.push(user);
+
+                localStorage.setItem('users', JSON.stringify(userList));
+
+                window.location.href = 'outra_pagina.html';
+            } else {
+                alert('Por favor, preencha todos os campos obrigatórios e concorde com os termos.');
+            }
+        }
+    </script>
+
+</body>
+</html>
